@@ -1,0 +1,12 @@
+.article {
+}
+
+
+.article-title a {
+    color: white;
+}
+
+.article-title {
+    font-size: 1.5rem;
+    background: blue;
+}
