@@ -4,7 +4,7 @@ const path = require('path');
 const models = require('./models');
 const apiRoutes = require('./routes/apiRoutes');
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3001;
 const mongoUrl = process.env.MONGODB_URI || process.env.MONGOLAB_URI || process.env.MONGOHQ_URL ||
     'mongodb://localhost/nytimes';
 
