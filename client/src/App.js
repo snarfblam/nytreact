@@ -8,7 +8,7 @@ import { Form, Input } from './components/Form';
 import SearchPanel from './components/SearchPanel';
 import * as nytApi from './api/nytApi';
 import * as nytReactApi from './api/nytReact';
-import SectionLabel from './components/SectionLabel'    
+import SectionLabel from './components/SectionLabel'
 
 class App extends Component {
     constructor() {
@@ -31,6 +31,20 @@ class App extends Component {
                     this.setState({ searchArticles });
                 });
         };
+
+        this.saveArticle = (evt, article) => {
+            evt.preventDefault();
+
+            nytReactApi
+                .saveArticle(article)
+                .then(result => {
+                    // console.log(result);
+                    var newSavedArticles = [...this.state.savedArticles, result.value];
+                    this.setState({savedArticles: newSavedArticles});
+                }).catch(err => {
+                    console.log(err);
+                });
+        }
     }
 
     componentDidMount() {
@@ -53,10 +67,10 @@ class App extends Component {
 
                 <SearchPanel onSearch={this.handleSearch} />
 
-                {this.state.searchArticles.length ? <SectionLabel>Search Results</SectionLabel> : null }  
-                <ArticleContainer articles={this.state.searchArticles} saveButton/>
-                {this.state.savedArticles.length ? <SectionLabel>Saved Articles</SectionLabel> : null }  
-                <ArticleContainer articles={this.state.savedArticles} removeButton saved/>
+                {this.state.searchArticles.length ? <SectionLabel>Search Results</SectionLabel> : null}
+                <ArticleContainer articles={this.state.searchArticles} saveButton onSave={this.saveArticle} />
+                {this.state.savedArticles.length ? <SectionLabel>Saved Articles</SectionLabel> : null}
+                <ArticleContainer articles={this.state.savedArticles} removeButton saved />
             </div>
         );
     }

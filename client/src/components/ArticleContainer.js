@@ -21,13 +21,15 @@ class ArticleContainer extends React.Component {
                 <Row>
                     {this.props.articles.map(article => (
                         <Article
-                            title={article.title}
-                            summary={article.summary}
-                            url={article.url}
+                            // title={article.title}
+                            // summary={article.summary}
+                            // url={article.url}
                             key={article.url}
+                            article={article}
                             saveButton={this.props.saveButton}
                             removeButton={this.props.removeButton}
                             saved={this.props.saved}
+                            onSave={this.props.onSave}
                         />
                     ))}
                 </Row>
