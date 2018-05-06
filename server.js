@@ -20,7 +20,7 @@ mongoose.connect(mongoUrl, function (err) {
     if (err) {
         console.log("Mongoose error", err);
     } else {
-        console.log('Riding the mongose');
+        console.log('Riding the mongoose');
     }
 });
 
