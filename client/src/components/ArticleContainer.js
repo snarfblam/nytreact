@@ -16,7 +16,6 @@ class ArticleContainer extends React.Component {
     }
 
     render() {
-        console.log(this.props.articles)
         return (
             <Container>
                 <Row>
@@ -25,6 +24,9 @@ class ArticleContainer extends React.Component {
                             title={article.title}
                             summary={article.summary}
                             url={article.url}
+                            saveButton={this.props.saveButton}
+                            removeButton={this.props.removeButton}
+                            saved={this.props.saved}
                         />
                     ))}
                 </Row>

@@ -10,3 +10,11 @@
     font-size: 1.5rem;
     background: blue;
 }
+
+.article-title-button {
+    float: right;
+    color: rgb(116, 116, 143);
+}
+.card a.article-title-button {
+    color: rgb(116, 116, 143);
+}

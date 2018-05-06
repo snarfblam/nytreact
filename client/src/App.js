@@ -53,8 +53,8 @@ class App extends Component {
 
                 <SearchPanel onSearch={this.handleSearch} />
 
-                <ArticleContainer articles={this.state.searchArticles} />
-                <ArticleContainer articles={this.state.savedArticles} />
+                <ArticleContainer articles={this.state.searchArticles} saveButton/>
+                <ArticleContainer articles={this.state.savedArticles} removeButton saved/>
             </div>
         );
     }
