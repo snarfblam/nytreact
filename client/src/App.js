@@ -9,6 +9,7 @@ import SearchPanel from './components/SearchPanel';
 import * as nytApi from './api/nytApi';
 import * as nytReactApi from './api/nytReact';
 import SectionLabel from './components/SectionLabel'
+import Modal, { ModalState } from './components/Modal';
 
 class App extends Component {
     constructor() {
@@ -17,6 +18,7 @@ class App extends Component {
         this.state = {
             searchArticles: [],
             savedArticles: [],
+            modal: new ModalState(),
         }
 
         this.handleSearch = (searchParams) => {
@@ -38,18 +40,40 @@ class App extends Component {
             nytReactApi
                 .saveArticle(article)
                 .then(result => {
+                    if (result.error && result.error.includes('duplicate')) {
+                        this.setState({
+                            modal: this.state.modal.show('The article is already in your bookmarks.', 'Article Saved')
+                        })                        
+                    } else if(result.error) {
+                        this.setState({
+                            modal: this.state.modal.show('There was an error bookmarking the article.', 'Error')
+                        })                        
+                    } else {
                     // console.log(result);
                     var newSavedArticles = [...this.state.savedArticles, result.value];
-                    this.setState({savedArticles: newSavedArticles});
+                    this.setState({
+                        savedArticles: newSavedArticles,
+                        modal: this.state.modal.show('The article was added to your bookmarks', 'Article Saved')
+                    });
+                        
+                    }
                 }).catch(err => {
                     console.log(err);
                 });
+        }
+
+        this.modalRequestClose = () => {
+            this.setState({ modal: this.state.modal.hide() });
+        }
+
+        this.showModal = (text, title) => {
+            var newModal = this.state.modal.show(text, title);
+            this.setState({ modal: newModal });
         }
     }
 
     componentDidMount() {
         nytReactApi.getSavedArticles().then(articles => {
-            console.log(articles);
             this.setState({ savedArticles: articles });
         });
     }
@@ -71,6 +95,8 @@ class App extends Component {
                 <ArticleContainer articles={this.state.searchArticles} saveButton onSave={this.saveArticle} />
                 {this.state.savedArticles.length ? <SectionLabel>Saved Articles</SectionLabel> : null}
                 <ArticleContainer articles={this.state.savedArticles} removeButton saved />
+
+                <Modal state={this.state.modal} onRequestClose={this.modalRequestClose} />
             </div>
         );
     }

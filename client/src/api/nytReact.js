@@ -12,7 +12,7 @@ function saveArticle(article) {
     return Axios
         .post('/saved', article)
         .then(response => {
-            if (response.data.error) throw Error(response.error);
+            // if (response.data.error) throw Error(response.data.error);
             return response.data;
         });
 }
