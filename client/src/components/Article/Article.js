@@ -13,11 +13,11 @@ const Article = props => (
         <div className='card article'>    
             <CardHead>
                 {props.saveButton ? 
-                    <a href='#' className='article-title-button' onClick={(e) => props.onSave(e, props.article)}><Fas icon='bookmark' /> Bookmark</a>
+                    <a href='#' className='article-title-button' onClick={(e) => doHandler(e, props.onSave, props.article)}><Fas icon='bookmark' /> Bookmark</a>
                     : null
                 }
                 {props.removeButton ? 
-                    <a href='#' className='article-title-button'><Fas icon='minus-circle' /> Remove</a>
+                    <a href='#' className='article-title-button' onClick={(e) => doHandler(e, props.onRemove, props.article)}><Fas icon='minus-circle' /> Remove</a>
                     : null
                 }
                 {props.saved ? <Fas icon='bookmark' /> : null}
@@ -29,5 +29,10 @@ const Article = props => (
         </div>    
     </Col>
 );
+
+function doHandler(e, handler, article) {
+    e.preventDefault();
+    if(handler) handler(article)
+}
 
 export default Article;

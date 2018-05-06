@@ -30,6 +30,7 @@ class ArticleContainer extends React.Component {
                             removeButton={this.props.removeButton}
                             saved={this.props.saved}
                             onSave={this.props.onSave}
+                            onRemove={this.props.onRemove}
                         />
                     ))}
                 </Row>

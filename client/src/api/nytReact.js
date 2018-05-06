@@ -17,4 +17,12 @@ function saveArticle(article) {
         });
 }
 
-export { getSavedArticles, saveArticle };
+function removeArticle(id) {
+    return Axios
+        .delete('/saved/' + id)
+        .then(response => {
+            return response.data;
+        })
+}
+
+export { getSavedArticles, saveArticle, removeArticle };
