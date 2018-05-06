@@ -1,11 +1,14 @@
 import React from 'react';
 import { Card, CardBody, CardHead } from '../Card';
 import { Form, Input, Select } from '../Form';
+import Col from '../Col';
+import Container from '../Container';
+import Row from '../Row';
 // import * as API from '../../NytApi';
 
 class SearchPanel extends React.Component {
     constructor(props) {
-        super(props); 
+        super(props);
 
         this.state = {
             searchTerm: "",
@@ -33,42 +36,48 @@ class SearchPanel extends React.Component {
 
     render() {
         return (
-            <Card>
-                <CardHead>Search NY Times</CardHead>
-                <CardBody>
-                    <Form>
-                        <Input
-                            name='searchTerm'
-                            label='Search Term:'
-                            onChange={this.handleChange}
-                            value={this.state.searchTerm}
-                        />
-                        <Select
-                            name='numRecords'
-                            label='Number of Records to Retrieve:'
-                            onChange={this.handleChange}
-                            value={this.state.numRecords} >
-                            <option>1</option>    
-                            <option>5</option>    
-                            <option>10</option>    
-                        </Select>    
-                        <Input
-                            name='startYear'
-                            label='Start Year (optional):'
-                            onChange={this.handleChange}
-                            value={this.state.startYear}
-                        />
-                        <Input
-                            name='endYear'
-                            label='End Year (optional):'
-                            onChange={this.handleChange}
-                            value={this.state.endYear}
-                        />
-                        <button className='btn btn-primary' type='submit' onClick={this.onSubmit}>Search</button>
-                    </Form>
-                </CardBody>
-            </Card>
-        );    
+            <Container>
+                <Row>
+                    <Col size='12'>
+                        <Card>
+                            <CardHead>Search NY Times</CardHead>
+                            <CardBody>
+                                <Form>
+                                    <Input
+                                        name='searchTerm'
+                                        label='Search Term:'
+                                        onChange={this.handleChange}
+                                        value={this.state.searchTerm}
+                                    />
+                                    <Select
+                                        name='numRecords'
+                                        label='Number of Records to Retrieve:'
+                                        onChange={this.handleChange}
+                                        value={this.state.numRecords} >
+                                        <option>1</option>
+                                        <option>5</option>
+                                        <option>10</option>
+                                    </Select>
+                                    <Input
+                                        name='startYear'
+                                        label='Start Year (optional):'
+                                        onChange={this.handleChange}
+                                        value={this.state.startYear}
+                                    />
+                                    <Input
+                                        name='endYear'
+                                        label='End Year (optional):'
+                                        onChange={this.handleChange}
+                                        value={this.state.endYear}
+                                    />
+                                    <button className='btn btn-primary' type='submit' onClick={this.onSubmit}>Search</button>
+                                </Form>
+                            </CardBody>
+                        </Card>
+                    </Col>
+            </Row>
+            </Container>
+        );
     }
 }
 

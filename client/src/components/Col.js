@@ -6,6 +6,8 @@ export default props => {
     var sizes = (props.size || '').split(' ');
     sizes = sizes.map(size => 'col-' + size);
     sizes = sizes.join(' ');
+    
+    if (props.className) sizes += ' ' + props.className;
 
-    return <div className={sizes + ' ' + props.className}>{props.children}</div>;
+    return <div className={sizes}>{props.children}</div>;
 }

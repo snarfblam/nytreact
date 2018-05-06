@@ -8,10 +8,8 @@ import Fas from '../Fas';
 //      .url
 const Article = props => (
     <Col size="12">
-        <Card>    
+        <div className='card article'>    
             <CardHead>
-                {props.saved ? <Fas icon='bookmark' /> : null}
-                <a href={props.url}> {props.title}</a>
                 {props.saveButton ? 
                     <a href='#' className='article-title-button'><Fas icon='bookmark' /> Bookmark</a>
                     : null
@@ -20,11 +18,13 @@ const Article = props => (
                     <a href='#' className='article-title-button'><Fas icon='minus-circle' /> Remove</a>
                     : null
                 }
+                {props.saved ? <Fas icon='bookmark' /> : null}
+                <a href={props.url}> {props.title}</a>
             </CardHead>
             <CardBody>
                 {props.summary}
             </CardBody>
-        </Card>    
+        </div>    
     </Col>
 );
 

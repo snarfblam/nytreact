@@ -1,4 +1,6 @@
 .article {
+    margin-bottom: .5em;
+    margin-top: .5em;
 }
 
 
@@ -12,6 +14,7 @@
 }
 
 .article-title-button {
+    font-size: 1rem;
     float: right;
     color: rgb(116, 116, 143);
 }
