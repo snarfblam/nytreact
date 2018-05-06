@@ -21,3 +21,7 @@
 .card a.article-title-button {
     color: rgb(116, 116, 143);
 }
+
+.card {
+    background: rgba(255,255,255, 0.9);
+}

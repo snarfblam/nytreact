@@ -4,6 +4,7 @@ import { Form, Input, Select } from '../Form';
 import Col from '../Col';
 import Container from '../Container';
 import Row from '../Row';
+import Fas from '../Fas';
 // import * as API from '../../NytApi';
 
 class SearchPanel extends React.Component {
@@ -40,7 +41,7 @@ class SearchPanel extends React.Component {
                 <Row>
                     <Col size='12'>
                         <Card>
-                            <CardHead>Search NY Times</CardHead>
+                            <CardHead><Fas icon='search' /> Search NY Times</CardHead>
                             <CardBody>
                                 <Form>
                                     <Input

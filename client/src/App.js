@@ -10,6 +10,7 @@ import * as nytApi from './api/nytApi';
 import * as nytReactApi from './api/nytReact';
 import SectionLabel from './components/SectionLabel'
 import Modal, { ModalState } from './components/Modal';
+import Fas from './components/Fas';
 
 class App extends Component {
     constructor() {
@@ -100,13 +101,8 @@ class App extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <h1 className="App-title">Welcome to React</h1>
+                    <h1 className="App-title"><Fas icon='newspaper' /> News Locker</h1>
                 </header>
-                <p className="App-intro">
-                    To get started, edit <code>src/App.js</code> and save to reload.
-                </p>
-
                 <SearchPanel onSearch={this.handleSearch} />
 
                 {this.state.searchArticles.length ? <SectionLabel>Search Results</SectionLabel> : null}

@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default props => (
-    <h2 className='sectionLabel'>
+    <h1 className='sectionLabel'>
         {props.children}
-    </h2>
+    </h1>
 );
