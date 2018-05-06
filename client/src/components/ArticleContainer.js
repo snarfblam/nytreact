@@ -7,25 +7,20 @@ import Article from './Article';
 
 
 class ArticleContainer extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
-        this.state = {
-            articles: [
-                {
-                    title: "TItle",
-                    summary: "summery",
-                    url: "#"
-                }
-            ],
-        };
+        // this.state = {
+        //     articles: props.articles,
+        // };
     }
 
-    render(props) {
+    render() {
+        console.log(this.props.articles)
         return (
             <Container>
                 <Row>
-                    {this.state.articles.map(article => (
+                    {this.props.articles.map(article => (
                         <Article
                             title={article.title}
                             summary={article.summary}
