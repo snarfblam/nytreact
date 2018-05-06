@@ -11,6 +11,9 @@ import * as nytReactApi from './api/nytReact';
 import SectionLabel from './components/SectionLabel'
 import Modal, { ModalState } from './components/Modal';
 import Fas from './components/Fas';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
+import SearchPage from './pages/SearchPage';
+import SavedPage from './pages/SavedPage';
 
 class App extends Component {
     constructor() {
@@ -99,19 +102,33 @@ class App extends Component {
 
     render() {
         return (
-            <div className="App">
-                <header className="App-header">
-                    <h1 className="App-title"><Fas icon='newspaper' /> News Locker</h1>
-                </header>
-                <SearchPanel onSearch={this.handleSearch} />
+            <BrowserRouter>
+                <div className="App">
+                    <header className="App-header">
+                        <h1 className="App-title"><Fas icon='newspaper' /> News Locker</h1>
+                        <Link to='/'>Home</Link>
+                        <Link to='/saved'>Saved</Link>
+                    </header>
+                    {/* <SearchPanel onSearch={this.handleSearch} />
 
-                {this.state.searchArticles.length ? <SectionLabel>Search Results</SectionLabel> : null}
-                <ArticleContainer articles={this.state.searchArticles} saveButton onSave={this.saveArticle} />
-                {this.state.savedArticles.length ? <SectionLabel>Saved Articles</SectionLabel> : null}
-                <ArticleContainer articles={this.state.savedArticles} removeButton saved onRemove={this.removeArticle} />
-
-                <Modal state={this.state.modal} onRequestClose={this.modalRequestClose} />
-            </div>
+                    {this.state.searchArticles.length ? <SectionLabel>Search Results</SectionLabel> : null}
+                    <ArticleContainer articles={this.state.searchArticles} saveButton onSave={this.saveArticle} /> */}
+                    <Route
+                        exact path='/'    
+                        render={(props) => 
+                            <SearchPage {...props} onSearch={this.handleSearch} onSave={this.saveArticle} articles={this.state.searchArticles} />
+                    } />
+                    <Route
+                        exact path='/saved'    
+                        render={(props) => 
+                        <SavedPage {...props} onRemove={this.removeArticle} articles={this.state.savedArticles} />
+                    } />
+                    {/* {this.state.savedArticles.length ? <SectionLabel>Saved Articles</SectionLabel> : null}
+                    <ArticleContainer articles={this.state.savedArticles} removeButton saved onRemove={this.removeArticle} /> */}
+                    {/* <SavedPage onRemove={this.removeArticle} articles={this.state.savedArticles} /> */}
+                    <Modal state={this.state.modal} onRequestClose={this.modalRequestClose} />
+                </div>
+            </BrowserRouter>    
         );
     }
 }
