@@ -6,7 +6,8 @@ import ArticleContainer from './components/ArticleContainer';
 import { Card, CardBody, CardHead } from './components/Card';
 import { Form, Input } from './components/Form';
 import SearchPanel from './components/SearchPanel';
-import * as nytApi from './nytApi';
+import * as nytApi from './api/nytApi';
+import * as nytReactApi from './api/nytReact';
 
 
 class App extends Component {
@@ -15,6 +16,7 @@ class App extends Component {
 
         this.state = {
             searchArticles: [],
+            savedArticles: [],
         }
 
         this.handleSearch = (searchParams) => {
@@ -31,6 +33,13 @@ class App extends Component {
         };
     }
 
+    componentDidMount() {
+        nytReactApi.getSavedArticles().then(articles => {
+            console.log(articles);
+            this.setState({ savedArticles: articles });
+        });
+    }
+
     render() {
         return (
             <div className="App">
@@ -41,19 +50,11 @@ class App extends Component {
                 <p className="App-intro">
                     To get started, edit <code>src/App.js</code> and save to reload.
                 </p>
-                <ArticleContainer articles={this.state.searchArticles} />
-                    {/* {this.state.searchArticles.map(article => (
-                        <Article
-                            title={article.title}
-                            summary={article.summary}
-                            url={article.url}
-                            key={article.url}
-                        />
-                    ))} */}
-                {/* </ArticleContainer> */}
+
                 <SearchPanel onSearch={this.handleSearch} />
 
-
+                <ArticleContainer articles={this.state.searchArticles} />
+                <ArticleContainer articles={this.state.savedArticles} />
             </div>
         );
     }
