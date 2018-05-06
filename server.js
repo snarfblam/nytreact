@@ -15,6 +15,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json({}));
 app.use(apiRoutes);
+
+app.get('*', (req, res) => {
+    var indexPath = path.join(__dirname, 'client', 'build', 'index.html');
+    res.sendfile(indexPath);
+});
     
 mongoose.connect(mongoUrl, function (err) {
     if (err) {

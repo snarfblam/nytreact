@@ -106,8 +106,8 @@ class App extends Component {
                 <div className="App">
                     <header className="App-header">
                         <h1 className="App-title"><Fas icon='newspaper' /> News Locker</h1>
-                        <Link to='/'>Home</Link>
-                        <Link to='/saved'>Saved</Link>
+                        <Link to='/'>Search</Link> | 
+                        <Link to='/saved'> Saved Articles</Link>
                     </header>
                     {/* <SearchPanel onSearch={this.handleSearch} />
 
