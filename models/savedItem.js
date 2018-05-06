@@ -1,4 +1,7 @@
 var mongoose = require('mongoose');
-var listingTemplate = require('./listingTemplate');
 
-module.exports = mongoose.model('savedItem', new mongoose.Schema(listingTemplate));
+module.exports = mongoose.model('savedItem', new mongoose.Schema(new Template([
+    "url            string      required",
+    "title          string      required", 
+    "summary        string      required",
+])));
