@@ -8,7 +8,7 @@ import { Form, Input } from './components/Form';
 import SearchPanel from './components/SearchPanel';
 import * as nytApi from './api/nytApi';
 import * as nytReactApi from './api/nytReact';
-
+import SectionLabel from './components/SectionLabel'    
 
 class App extends Component {
     constructor() {
@@ -53,7 +53,9 @@ class App extends Component {
 
                 <SearchPanel onSearch={this.handleSearch} />
 
+                {this.state.searchArticles.length ? <SectionLabel>Search Results</SectionLabel> : null }  
                 <ArticleContainer articles={this.state.searchArticles} saveButton/>
+                {this.state.savedArticles.length ? <SectionLabel>Saved Articles</SectionLabel> : null }  
                 <ArticleContainer articles={this.state.savedArticles} removeButton saved/>
             </div>
         );
